@@ -1,8 +1,9 @@
 // Lista de usuarios y contraseñas permitidos
 const users = [
-    { username: 'mmatamoros', password: '74648575' },
-    { username: 'egaviño', password: '75373215' },
-    { username: 'bllamoca', password: '76943806' }
+    { username: 'mmatamorosc', password: '74648575', role: 'admin' },
+    { username: 'egaviño', password: '75373215', role: 'admin' },
+    { username: 'alumno', password: '12345678', role: 'guest' },
+    { username: 'bllamoca', password: '76943806', role: 'admin' }
 ];
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
@@ -17,6 +18,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     if (user) {
         document.getElementById('loginContainer').classList.add('hidden');
         document.getElementById('appContainer').classList.remove('hidden');
+
+        // Condicional basado en el rol del usuario
+        if (user.role === 'guest') {
+            document.getElementById('linkForm').classList.add('hidden');
+        }
     } else {
         document.getElementById('loginErrorMessage').textContent = 'Invalid username or password';
     }
@@ -37,39 +43,42 @@ document.getElementById('linkForm').addEventListener('submit', function(event) {
 
 function addCourseToList(name, link) {
     const courseList = document.getElementById('courseList');
-    const category = prompt('Enter the category for this link:', 'Default');
-    let categoryElement = document.querySelector(`.category[data-category="${category}"]`);
-
-    if (!categoryElement) {
-        categoryElement = document.createElement('div');
-        categoryElement.classList.add('category');
-        categoryElement.dataset.category = category;
-
-        const categoryTitle = document.createElement('h2');
-        categoryTitle.textContent = category;
-        categoryElement.appendChild(categoryTitle);
-
-        courseList.appendChild(categoryElement);
-    }
-
     const li = document.createElement('li');
 
     const anchor = document.createElement('a');
     anchor.href = link;
     anchor.textContent = name;
     anchor.target = '_blank';
-    anchor.classList.add('course-link');
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Eliminar';
     deleteButton.addEventListener('click', function() {
-        categoryElement.removeChild(li);
-        if (categoryElement.querySelectorAll('li').length === 0) {
-            courseList.removeChild(categoryElement);
-        }
+        courseList.removeChild(li);
     });
 
     li.appendChild(anchor);
     li.appendChild(deleteButton);
-    categoryElement.appendChild(li);
+    courseList.appendChild(li);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const filterInput = document.createElement('input');
+    filterInput.type = 'text';
+    filterInput.id = 'filterCourses';
+    filterInput.placeholder = 'Filtrar cursos...';
+    document.getElementById('appContainer').insertBefore(filterInput, document.getElementById('courseList'));
+
+    filterInput.addEventListener('input', function() {
+        const filterValue = filterInput.value.toLowerCase();
+        const courses = document.querySelectorAll('#courseList li');
+
+        courses.forEach(course => {
+            const courseName = course.querySelector('a').textContent.toLowerCase();
+            if (courseName.includes(filterValue)) {
+                course.style.display = '';
+            } else {
+                course.style.display = 'none';
+            }
+        });
+    });
+});
