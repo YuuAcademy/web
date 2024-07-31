@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +8,21 @@
 </head>
 <body>
     <div id="loginContainer" class="container">
-        <h1>Login</h1>
+        <h1>Inicia Sesion</h1>
         <form id="loginForm">
-            <input type="text" id="loginUsername" placeholder="Username" required>
-            <input type="password" id="loginPassword" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <input type="text" id="loginUsername" placeholder="Usuario" required>
+            <input type="password" id="loginPassword" placeholder="Contraseña" required>
+            <button type="submit">Entrar</button>
         </form>
         <p id="loginErrorMessage" class="error-message"></p>
     </div>
 
     <div id="appContainer" class="container hidden">
-        <h1>Study App</h1>
+        <h1>Calculando-Ando</h1>
         <form id="linkForm">
-            <input type="text" id="courseName" placeholder="Course/Class Name" required>
-            <input type="url" id="courseLink" placeholder="Link (e.g., Mega link)" required>
-            <button type="submit">Add Course</button>
+            <input type="text" id="courseName" placeholder="Titulo/Descripcion" required>
+            <input type="url" id="courseLink" placeholder="Enlace" required>
+            <button type="submit">Agregar Enlace</button>
         </form>
         <ul id="courseList"></ul>
     </div>
@@ -30,3 +30,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

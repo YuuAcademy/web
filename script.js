@@ -1,8 +1,8 @@
 // Lista de usuarios y contraseñas permitidos
 const users = [
-    { username: 'mmatamoros', password: '74648575' },
-    { username: 'bllamoca', password: 'contraseña' },
-    { username: 'egaviño', password: 'contraseña' }
+    { username: 'mmatamorosc', password: '74648575' },
+    { username: 'user2', password: 'password2' },
+    { username: 'user3', password: 'password3' }
 ];
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
@@ -44,6 +44,13 @@ function addCourseToList(name, link) {
     anchor.textContent = name;
     anchor.target = '_blank';
 
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Eliminar';
+    deleteButton.addEventListener('click', function() {
+        courseList.removeChild(li);
+    });
+
     li.appendChild(anchor);
+    li.appendChild(deleteButton);
     courseList.appendChild(li);
 }
