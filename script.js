@@ -37,20 +37,39 @@ document.getElementById('linkForm').addEventListener('submit', function(event) {
 
 function addCourseToList(name, link) {
     const courseList = document.getElementById('courseList');
+    const category = prompt('Enter the category for this link:', 'Default');
+    let categoryElement = document.querySelector(`.category[data-category="${category}"]`);
+
+    if (!categoryElement) {
+        categoryElement = document.createElement('div');
+        categoryElement.classList.add('category');
+        categoryElement.dataset.category = category;
+
+        const categoryTitle = document.createElement('h2');
+        categoryTitle.textContent = category;
+        categoryElement.appendChild(categoryTitle);
+
+        courseList.appendChild(categoryElement);
+    }
+
     const li = document.createElement('li');
 
     const anchor = document.createElement('a');
     anchor.href = link;
     anchor.textContent = name;
     anchor.target = '_blank';
+    anchor.classList.add('course-link');
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Eliminar';
     deleteButton.addEventListener('click', function() {
-        courseList.removeChild(li);
+        categoryElement.removeChild(li);
+        if (categoryElement.querySelectorAll('li').length === 0) {
+            courseList.removeChild(categoryElement);
+        }
     });
 
     li.appendChild(anchor);
     li.appendChild(deleteButton);
-    courseList.appendChild(li);
+    categoryElement.appendChild(li);
 }
