@@ -22,6 +22,7 @@ const users = [
   
       // Ejemplo de enlaces predefinidos (puedes reemplazar con tu lógica para obtener enlaces)
       const courseList = [
+        { title: 'Curso de WEB CALCULANDO-ANDO', link: 'https://calculandoando.com/' },
         { title: 'Curso de Algebra', link: 'https://example.com/matematicas' },
         { title: 'Curso de Trigonometria', link: 'https://example.com/matematicas' },
         { title: 'Curso de Aritmetica', link: 'https://example.com/fisica' },
