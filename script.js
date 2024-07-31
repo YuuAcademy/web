@@ -1,8 +1,8 @@
 // Lista de usuarios y contraseñas permitidos
 const users = [
-    { username: 'mmatamorosc', password: '74648575' },
-    { username: 'user2', password: 'password2' },
-    { username: 'user3', password: 'password3' }
+    { username: 'mmatamoros', password: '74648575' },
+    { username: 'egaviño', password: '75373215' },
+    { username: 'bllamoca', password: '76943806' }
 ];
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
