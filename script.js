@@ -22,11 +22,17 @@ const users = [
   
       // Ejemplo de enlaces predefinidos (puedes reemplazar con tu lógica para obtener enlaces)
       const courseList = [
-        { title: 'CALCULANDOANDO', link: 'https://calculandoando.com/' },
+        { title: 'CALCULANDO-ANDO', link: 'https://calculandoando.com/' },
+        { title: 'PRIMARIA'},
         { title: 'Curso de Algebra', link: 'https://example.com/matematicas' },
-        { title: 'Curso de Trigonometria', link: 'https://example.com/matematicas' },
         { title: 'Curso de Aritmetica', link: 'https://example.com/fisica' },
-        { title: 'Curso de Geometria', link: 'https://example.com/quimica' }
+        { title: 'Curso de Geometria', link: 'https://example.com/fisica' },
+        { title: 'Curso de Trigonometria', link: 'https://example.com/fisica' },
+        { title: 'SECUNDARIA'},
+        { title: 'Curso de Algebra', link: 'https://example.com/fisica' },
+        { title: 'Curso de Aritmetica', link: 'https://example.com/fisica' },
+        { title: 'Curso de Geometria', link: 'https://example.com/fisica' },
+        { title: 'Curso de Trigonometria', link: 'https://example.com/quimica' }
       ];
   
       const ul = document.getElementById('courseList');
