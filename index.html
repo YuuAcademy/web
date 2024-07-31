@@ -22,9 +22,12 @@
         <form id="linkForm">
             <input type="text" id="courseName" placeholder="Titulo/Descripcion" required>
             <input type="url" id="courseLink" placeholder="Enlace" required>
+            <input type="text" id="courseCategory" placeholder="Categoría" required>
             <button type="submit">Agregar Enlace</button>
         </form>
-        <ul id="courseList"></ul>
+        <div id="courseListContainer">
+            <ul id="courseList"></ul>
+        </div>
     </div>
 
     <script src="script.js"></script>

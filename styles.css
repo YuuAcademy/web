@@ -63,26 +63,18 @@ li {
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
-li a {
-    margin-right: 10px; /* Espacio entre el enlace y el botón de eliminar */
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .error-message {
     color: red;
     text-align: center;
-}
-
-/* Estilos adicionales para organizar enlaces por categorías */
-.category {
-    margin-bottom: 20px;
-}
-
-.category h2 {
-    color: #007bff;
-    margin-bottom: 10px;
 }

@@ -1,9 +1,8 @@
 // Lista de usuarios y contraseñas permitidos
 const users = [
     { username: 'mmatamorosc', password: '74648575', role: 'admin' },
-    { username: 'egaviño', password: '75373215', role: 'admin' },
     { username: 'alumno', password: '12345678', role: 'guest' },
-    { username: 'bllamoca', password: '76943806', role: 'admin' }
+    { username: 'user3', password: 'password3', role: 'admin' }
 ];
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
@@ -22,6 +21,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         // Condicional basado en el rol del usuario
         if (user.role === 'guest') {
             document.getElementById('linkForm').classList.add('hidden');
+        } else {
+            document.getElementById('linkForm').classList.remove('hidden');
         }
     } else {
         document.getElementById('loginErrorMessage').textContent = 'Invalid username or password';
@@ -33,16 +34,33 @@ document.getElementById('linkForm').addEventListener('submit', function(event) {
 
     const courseName = document.getElementById('courseName').value;
     const courseLink = document.getElementById('courseLink').value;
+    const courseCategory = document.getElementById('courseCategory').value;
 
-    if (courseName && courseLink) {
-        addCourseToList(courseName, courseLink);
+    if (courseName && courseLink && courseCategory) {
+        addCourseToList(courseName, courseLink, courseCategory);
         document.getElementById('courseName').value = '';
         document.getElementById('courseLink').value = '';
+        document.getElementById('courseCategory').value = '';
     }
 });
 
-function addCourseToList(name, link) {
+function addCourseToList(name, link, category) {
     const courseList = document.getElementById('courseList');
+    const categoryHeader = document.querySelector(`h2[data-category="${category}"]`);
+
+    let categoryList;
+    if (categoryHeader) {
+        categoryList = categoryHeader.nextElementSibling;
+    } else {
+        const newCategoryHeader = document.createElement('h2');
+        newCategoryHeader.textContent = category;
+        newCategoryHeader.setAttribute('data-category', category);
+        courseList.appendChild(newCategoryHeader);
+
+        categoryList = document.createElement('ul');
+        courseList.appendChild(categoryList);
+    }
+
     const li = document.createElement('li');
 
     const anchor = document.createElement('a');
@@ -53,32 +71,68 @@ function addCourseToList(name, link) {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Eliminar';
     deleteButton.addEventListener('click', function() {
-        courseList.removeChild(li);
+        categoryList.removeChild(li);
+        if (!categoryList.hasChildNodes()) {
+            courseList.removeChild(categoryHeader);
+            courseList.removeChild(categoryList);
+        }
     });
 
     li.appendChild(anchor);
     li.appendChild(deleteButton);
-    courseList.appendChild(li);
+    categoryList.appendChild(li);
 }
 
+// Ejemplo de enlaces predefinidos para visualización inicial
+const preDefinedLinks = [
+    { name: 'Curso de Algebra', link: 'https://example.com/matematicas', category: 'Algebra' },
+    { name: 'Curso de Trigonometria', link: 'https://example.com/matematicas', category: 'Trigonometria' },
+    { name: 'Curso de Aritmetica', link: 'https://example.com/fisica', category: 'Aritmetica' },
+    { name: 'Curso de Geometria', link: 'https://example.com/quimica', category: 'Geometria' }
+];
+
+// Agregar enlaces predefinidos a la lista al cargar la página
 document.addEventListener('DOMContentLoaded', function() {
-    const filterInput = document.createElement('input');
-    filterInput.type = 'text';
-    filterInput.id = 'filterCourses';
-    filterInput.placeholder = 'Filtrar cursos...';
-    document.getElementById('appContainer').insertBefore(filterInput, document.getElementById('courseList'));
-
-    filterInput.addEventListener('input', function() {
-        const filterValue = filterInput.value.toLowerCase();
-        const courses = document.querySelectorAll('#courseList li');
-
-        courses.forEach(course => {
-            const courseName = course.querySelector('a').textContent.toLowerCase();
-            if (courseName.includes(filterValue)) {
-                course.style.display = '';
-            } else {
-                course.style.display = 'none';
-            }
-        });
+    preDefinedLinks.forEach(course => {
+        addCourseToList(course.name, course.link, course.category);
     });
 });
+
+function addCourseToList(name, link, category) {
+    const courseList = document.getElementById('courseList');
+    const categoryHeader = document.querySelector(`h2[data-category="${category}"]`);
+
+    let categoryList;
+    if (categoryHeader) {
+        categoryList = categoryHeader.nextElementSibling;
+    } else {
+        const newCategoryHeader = document.createElement('h2');
+        newCategoryHeader.textContent = category;
+        newCategoryHeader.setAttribute('data-category', category);
+        courseList.appendChild(newCategoryHeader);
+
+        categoryList = document.createElement('ul');
+        courseList.appendChild(categoryList);
+    }
+
+    const li = document.createElement('li');
+
+    const anchor = document.createElement('a');
+    anchor.href = link;
+    anchor.textContent = name;
+    anchor.target = '_blank';
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Eliminar';
+    deleteButton.addEventListener('click', function() {
+        categoryList.removeChild(li);
+        if (!categoryList.hasChildNodes()) {
+            courseList.removeChild(categoryHeader);
+            courseList.removeChild(categoryList);
+        }
+    });
+
+    li.appendChild(anchor);
+    li.appendChild(deleteButton);
+    categoryList.appendChild(li);
+}
