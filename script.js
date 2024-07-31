@@ -4,7 +4,7 @@ const users = [
     { username: 'alumno', password: '12345678', role: 'guest' },
     { username: 'egaviño', password: '75373215', role: 'admin' },
     { username: 'bllamoca', password: '76943806', role: 'admin' },
-    { username: 'vdelacruz', password: '123456789', role: 'admin' }
+    { username: 'vdelacruz', password: '72213690', role: 'admin' }
   ];
   
   document.getElementById('loginForm').addEventListener('submit', function(event) {
