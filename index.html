@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study App</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study App</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="loginContainer" class="container">
-        <h1>Inicia Sesion</h1>
-        <form id="loginForm">
-            <input type="text" id="loginUsername" placeholder="Usuario" required>
-            <input type="password" id="loginPassword" placeholder="Contraseña" required>
-            <button type="submit">Entrar</button>
-        </form>
-        <p id="loginErrorMessage" class="error-message"></p>
-    </div>
+  <div id="loginContainer" class="container">
+    <h1>Inicia Sesion</h1>
+    <form id="loginForm">
+      <input type="text" id="loginUsername" placeholder="Usuario" required>
+      <input type="password" id="loginPassword" placeholder="Contraseña" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p id="loginErrorMessage" class="error-message"></p>
+  </div>
 
-    <div id="appContainer" class="container hidden">
-        <h1>Calculando-Ando</h1>
-        <form id="linkForm">
-            <input type="text" id="courseName" placeholder="Titulo/Descripcion" required>
-            <input type="url" id="courseLink" placeholder="Enlace" required>
-            <input type="text" id="courseCategory" placeholder="Categoría" required>
-            <button type="submit">Agregar Enlace</button>
-        </form>
-        <div id="courseListContainer">
-            <ul id="courseList"></ul>
-        </div>
-    </div>
+  <div id="appContainer" class="container hidden">
+    <h1>Cursos</h1>  <ul id="courseList"></ul>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
 
